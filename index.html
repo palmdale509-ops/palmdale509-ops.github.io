@@ -1,0 +1,1027 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brayan Meza — Barber & Cosmetologist | Prestige Old Skool</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter & Playfair Display -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+   
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#f9f9fb',
+                            100: '#f2f2f5',
+                            200: '#e5e6eb',
+                            300: '#d0d2db',
+                            400: '#9fa3b3',
+                            500: '#6d7285',
+                            800: '#232630',
+                            900: '#111318',
+                            gold: '#c5a059',
+                            goldlight: '#dfc285',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+   
+    <style>
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f9f9fb;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #d0d2db;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #9fa3b3;
+        }
+       
+        /* Glassmorphism elements */
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(229, 230, 235, 0.8);
+        }
+       
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(242, 242, 245, 0.9);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+       
+        .glass-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 30px -10px rgba(17, 19, 24, 0.08);
+            border-color: rgba(197, 160, 89, 0.4);
+        }
+
+        /* Subtle scroll animation utility class */
+        .reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body class="bg-brand-50 text-brand-900 font-sans antialiased selection:bg-brand-gold selection:text-white">
+
+    <!-- Navigation Bar -->
+    <header class="fixed top-0 left-0 right-0 z-40 glass-panel border-b border-brand-200/60 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Brand Logo -->
+                <a href="#hero" class="group flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-full bg-brand-900 text-brand-gold flex items-center justify-center font-serif text-xl font-bold group-hover:bg-brand-gold group-hover:text-brand-900 transition-colors">
+                        BM
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="font-serif font-bold text-lg leading-none tracking-tight text-brand-900">Brayan Meza</span>
+                        <span class="text-xs uppercase tracking-widest text-brand-500 font-medium mt-1">Barber & Cosmetologist</span>
+                    </div>
+                </a>
+
+                <!-- Desktop Navigation Links -->
+                <nav class="hidden md:flex items-center gap-8">
+                    <a href="#about" class="text-sm font-medium text-brand-800 hover:text-brand-gold transition-colors">About</a>
+                    <a href="#services" class="text-sm font-medium text-brand-800 hover:text-brand-gold transition-colors">Services</a>
+                    <a href="#portfolio" class="text-sm font-medium text-brand-800 hover:text-brand-gold transition-colors">Portfolio</a>
+                    <a href="#estimator" class="text-sm font-medium text-brand-800 hover:text-brand-gold transition-colors">Book Estimator</a>
+                    <a href="#testimonials" class="text-sm font-medium text-brand-800 hover:text-brand-gold transition-colors">Reviews</a>
+                </nav>
+
+                <!-- Action CTA -->
+                <div class="hidden md:flex items-center gap-4">
+                    <a href="https://instagram.com/prestige_old_skool" target="_blank" rel="noopener" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-brand-900 text-white text-xs font-semibold uppercase tracking-wider hover:bg-brand-gold hover:text-brand-900 transition-all shadow-sm hover:shadow-md">
+                        <i class="fa-brands fa-instagram text-sm"></i>
+                        <span>@prestige_old_skool</span>
+                    </a>
+                </div>
+
+                <!-- Mobile menu toggle button -->
+                <button id="mobile-menu-btn" class="md:hidden p-2 text-brand-900 hover:text-brand-gold focus:outline-none" aria-label="Toggle Navigation Menu">
+                    <i class="fa-solid fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation Drawer -->
+        <div id="mobile-menu" class="hidden md:hidden border-t border-brand-200 bg-white/95 px-4 pt-3 pb-6 space-y-3">
+            <a href="#about" class="block py-2 text-base font-medium text-brand-800 border-b border-brand-100">About</a>
+            <a href="#services" class="block py-2 text-base font-medium text-brand-800 border-b border-brand-100">Services</a>
+            <a href="#portfolio" class="block py-2 text-base font-medium text-brand-800 border-b border-brand-100">Portfolio</a>
+            <a href="#estimator" class="block py-2 text-base font-medium text-brand-800 border-b border-brand-100">Book Estimator</a>
+            <a href="#testimonials" class="block py-2 text-base font-medium text-brand-800 border-b border-brand-100">Reviews</a>
+            <div class="pt-2">
+                <a href="https://instagram.com/prestige_old_skool" target="_blank" rel="noopener" class="w-full flex items-center justify-center gap-2 px-5 py-3 rounded-full bg-brand-900 text-white text-xs font-semibold uppercase tracking-wider">
+                    <i class="fa-brands fa-instagram text-base"></i>
+                    <span>Book via @prestige_old_skool</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="pt-20">
+
+        <!-- Hero Section -->
+        <section id="hero" class="relative min-h-[90vh] flex items-center justify-center py-20 overflow-hidden">
+            <!-- Background Decorative Accents -->
+            <div class="absolute inset-0 z-0 opacity-40">
+                <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-brand-gold/20 rounded-full blur-3xl"></div>
+                <div class="absolute bottom-1/3 right-1/4 w-80 h-80 bg-brand-300/30 rounded-full blur-3xl"></div>
+            </div>
+
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                   
+                    <!-- Left Hero Content -->
+                    <div class="lg:col-span-7 space-y-6 text-center lg:text-left reveal">
+                        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-brand-200 text-xs font-medium text-brand-800 shadow-sm">
+                            <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                            <span>Accepting Appointments at Prestige Old Skool</span>
+                        </div>
+                       
+                        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-serif font-bold text-brand-900 leading-[1.15] tracking-tight">
+                            Mastering Old School Craft & Modern Cosmetology.
+                        </h1>
+                       
+                        <p class="text-lg sm:text-xl text-brand-500 max-w-2xl font-light leading-relaxed mx-auto lg:mx-0">
+                            From precision fades and classic old-fashioned styles to revitalizing scalp treatments, facials, and custom blowouts. Elevating everyday grooming into premium aesthetic care.
+                        </p>
+
+                        <!-- CTA Buttons -->
+                        <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-4">
+                            <button onclick="openBookingModal()" class="w-full sm:w-auto px-8 py-4 rounded-full bg-brand-900 text-white font-medium text-sm tracking-wide hover:bg-brand-gold hover:text-brand-900 transition-all duration-300 shadow-lg hover:shadow-xl flex items-center justify-center gap-3 group">
+                                <span>Book Your Session</span>
+                                <i class="fa-solid fa-arrow-right text-xs group-hover:translate-x-1 transition-transform"></i>
+                            </button>
+                            <a href="#estimator" class="w-full sm:w-auto px-8 py-4 rounded-full bg-white border border-brand-300 text-brand-800 font-medium text-sm tracking-wide hover:bg-brand-100 hover:border-brand-400 transition-all text-center">
+                                Calculate Services & Estimate
+                            </a>
+                        </div>
+
+                        <!-- Highlights Badge Grid -->
+                        <div class="pt-8 border-t border-brand-200/80 grid grid-cols-3 gap-4 max-w-lg mx-auto lg:mx-0">
+                            <div>
+                                <p class="font-serif text-2xl sm:text-3xl font-bold text-brand-900">100%</p>
+                                <p class="text-xs text-brand-500 uppercase tracking-wider font-medium mt-1">Client Satisfaction</p>
+                            </div>
+                            <div>
+                                <p class="font-serif text-2xl sm:text-3xl font-bold text-brand-900">Precision</p>
+                                <p class="text-xs text-brand-500 uppercase tracking-wider font-medium mt-1">Old Skool Fades</p>
+                            </div>
+                            <div>
+                                <p class="font-serif text-2xl sm:text-3xl font-bold text-brand-900">Complete</p>
+                                <p class="text-xs text-brand-500 uppercase tracking-wider font-medium mt-1">Skin & Hair Care</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Hero Image/Card Showcase -->
+                    <div class="lg:col-span-5 relative reveal">
+                        <div class="relative mx-auto max-w-md lg:max-w-none">
+                            <!-- Main Visual Showcase Box -->
+                            <div class="aspect-[4/5] rounded-2xl overflow-hidden shadow-2xl border-4 border-white bg-brand-200 relative group">
+                                <img src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&q=80&w=800"
+                                     alt="Brayan Meza Grooming & Hair Styling"
+                                     class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                                     onerror="this.src='https://placehold.co/600x750/111318/FFFFFF?text=Brayan+Meza+Barbering'">
+                               
+                                <div class="absolute inset-0 bg-gradient-to-t from-brand-900/80 via-transparent to-transparent opacity-90"></div>
+                               
+                                <div class="absolute bottom-0 left-0 right-0 p-6 text-white space-y-1">
+                                    <span class="px-3 py-1 bg-brand-gold text-brand-900 text-xs uppercase font-bold tracking-widest rounded-full inline-block mb-2">Signature Craftsman</span>
+                                    <h3 class="font-serif text-2xl font-bold">Brayan Meza</h3>
+                                    <p class="text-xs text-brand-200 tracking-wide">Barber & Cosmetology Specialist</p>
+                                </div>
+                            </div>
+
+                            <!-- Floating Floating Glass Pill 1 -->
+                            <div class="absolute -top-6 -left-6 hidden sm:flex items-center gap-3 px-4 py-3 rounded-xl glass-panel shadow-lg border border-white">
+                                <div class="w-9 h-9 rounded-full bg-brand-gold/20 text-brand-gold flex items-center justify-center text-lg">
+                                    <i class="fa-solid fa-scissors"></i>
+                                </div>
+                                <div>
+                                    <p class="text-xs font-bold text-brand-900">Custom Cuts</p>
+                                    <p class="text-[10px] text-brand-500">Old Fashioned Styles</p>
+                                </div>
+                            </div>
+
+                            <!-- Floating Glass Pill 2 -->
+                            <div class="absolute -bottom-6 -right-6 hidden sm:flex items-center gap-3 px-4 py-3 rounded-xl glass-panel shadow-lg border border-white">
+                                <div class="w-9 h-9 rounded-full bg-emerald-500/20 text-emerald-600 flex items-center justify-center text-lg">
+                                    <i class="fa-solid fa-spa"></i>
+                                </div>
+                                <div>
+                                    <p class="text-xs font-bold text-brand-900">Scalp & Facials</p>
+                                    <p class="text-[10px] text-brand-500">Deep Cleansing & Care</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+
+        <!-- About & Philosophy Section -->
+        <section id="about" class="py-20 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                   
+                    <div class="lg:col-span-5 reveal">
+                        <div class="relative">
+                            <div class="aspect-square rounded-2xl overflow-hidden bg-brand-100 shadow-lg">
+                                <img src="https://images.unsplash.com/photo-1585747860715-2ba37e788b70?auto=format&fit=crop&q=80&w=800"
+                                     alt="Barber Shop Craftsmanship"
+                                     class="w-full h-full object-cover"
+                                     onerror="this.src='https://placehold.co/600x600/e5e6eb/111318?text=Barber+Shop'">
+                            </div>
+                            <div class="absolute -bottom-8 -right-8 w-48 h-48 rounded-2xl overflow-hidden border-4 border-white shadow-xl hidden sm:block">
+                                <img src="https://images.unsplash.com/photo-1622286342621-4bd786c2447c?auto=format&fit=crop&q=80&w=400"
+                                     alt="Facial and Hair Treatment"
+                                     class="w-full h-full object-cover"
+                                     onerror="this.src='https://placehold.co/300x300/111318/FFFFFF?text=Facials'">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="lg:col-span-7 space-y-6 reveal">
+                        <div class="inline-block">
+                            <span class="text-xs uppercase tracking-widest font-bold text-brand-gold">Craft & Philosophy</span>
+                            <h2 class="text-3xl sm:text-4xl font-serif font-bold text-brand-900 mt-1">Dedicated To Fulfilling Every Client's Vision</h2>
+                        </div>
+
+                        <p class="text-brand-500 text-base leading-relaxed font-light">
+                            As a dual-trained **Barber and Cosmetologist**, I bridge the gap between sharp, timeless barbering traditions and comprehensive hair & skin therapy. Every client who sits in my chair receives a tailored experience designed to match their exact request, lifestyle, and aesthetic goals.
+                        </p>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
+                            <div class="p-5 rounded-xl bg-brand-50 border border-brand-200/80">
+                                <div class="w-10 h-10 rounded-lg bg-brand-900 text-brand-gold flex items-center justify-center mb-3">
+                                    <i class="fa-solid fa-cut"></i>
+                                </div>
+                                <h3 class="font-serif font-semibold text-brand-900 text-lg mb-1">Precision Barbering</h3>
+                                <p class="text-xs text-brand-500 leading-normal">Expert Old Fashioned fades, clean tapers, crisp line-ups, and custom hair designs built on clean geometry.</p>
+                            </div>
+
+                            <div class="p-5 rounded-xl bg-brand-50 border border-brand-200/80">
+                                <div class="w-10 h-10 rounded-lg bg-brand-900 text-brand-gold flex items-center justify-center mb-3">
+                                    <i class="fa-solid fa-pump-soap"></i>
+                                </div>
+                                <h3 class="font-serif font-semibold text-brand-900 text-lg mb-1">Advanced Cosmetology</h3>
+                                <p class="text-xs text-brand-500 leading-normal">Deep-cleansing facials, relaxing scalp treatments, hair texture perms, and professional blowouts.</p>
+                            </div>
+                        </div>
+
+                        <div class="pt-4 flex items-center gap-4">
+                            <a href="https://instagram.com/prestige_old_skool" target="_blank" rel="noopener" class="inline-flex items-center gap-2 font-semibold text-sm text-brand-900 hover:text-brand-gold transition-colors">
+                                <span>See Recent Work on Instagram @prestige_old_skool</span>
+                                <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+
+        <!-- Interactive Services Grid Section -->
+        <section id="services" class="py-20 bg-brand-50 border-y border-brand-200/60">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+               
+                <div class="text-center max-w-3xl mx-auto mb-16 reveal">
+                    <span class="text-xs uppercase tracking-widest font-bold text-brand-gold">Service Menu</span>
+                    <h2 class="text-3xl sm:text-4xl font-serif font-bold text-brand-900 mt-2">Comprehensive Barber & Cosmetology Offerings</h2>
+                    <p class="text-brand-500 text-sm sm:text-base mt-3">Combining precision hair sculpting with premium facial skin care and restorative treatments.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                   
+                    <!-- Service 1 -->
+                    <div class="glass-card p-8 rounded-2xl flex flex-col justify-between reveal">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="p-3 rounded-xl bg-brand-900 text-brand-gold text-xl">
+                                    <i class="fa-solid fa-user-ninja"></i>
+                                </span>
+                                <span class="text-xs font-semibold px-3 py-1 rounded-full bg-brand-100 text-brand-800">Barbering</span>
+                            </div>
+                            <h3 class="text-xl font-serif font-bold text-brand-900 mb-2">Old Fashioned Fades & Styles</h3>
+                            <p class="text-brand-500 text-xs leading-relaxed mb-6">High, mid, or low skin fades, tapers, pompadours, and classic scissor cuts tailored to your head shape and preference.</p>
+                        </div>
+                        <div class="pt-4 border-t border-brand-200 flex items-center justify-between">
+                            <span class="text-xs font-semibold text-brand-500">Duration ~ 45 mins</span>
+                            <button onclick="selectServiceForEstimate('fade')" class="text-xs font-bold text-brand-900 hover:text-brand-gold transition-colors flex items-center gap-1">
+                                <span>Add to Estimator</span>
+                                <i class="fa-solid fa-plus text-[10px]"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Service 2 -->
+                    <div class="glass-card p-8 rounded-2xl flex flex-col justify-between reveal">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="p-3 rounded-xl bg-brand-900 text-brand-gold text-xl">
+                                    <i class="fa-solid fa-wind"></i>
+                                </span>
+                                <span class="text-xs font-semibold px-3 py-1 rounded-full bg-brand-100 text-brand-800">Styling</span>
+                            </div>
+                            <h3 class="text-xl font-serif font-bold text-brand-900 mb-2">Signature Blowouts & Styling</h3>
+                            <p class="text-brand-500 text-xs leading-relaxed mb-6">Volumizing and sleek blow-dry styling techniques engineered to maximize hair movement, shine, and structural longevity.</p>
+                        </div>
+                        <div class="pt-4 border-t border-brand-200 flex items-center justify-between">
+                            <span class="text-xs font-semibold text-brand-500">Duration ~ 30 mins</span>
+                            <button onclick="selectServiceForEstimate('blowout')" class="text-xs font-bold text-brand-900 hover:text-brand-gold transition-colors flex items-center gap-1">
+                                <span>Add to Estimator</span>
+                                <i class="fa-solid fa-plus text-[10px]"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Service 3 -->
+                    <div class="glass-card p-8 rounded-2xl flex flex-col justify-between reveal">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="p-3 rounded-xl bg-brand-900 text-brand-gold text-xl">
+                                    <i class="fa-solid fa-spa"></i>
+                                </span>
+                                <span class="text-xs font-semibold px-3 py-1 rounded-full bg-brand-100 text-brand-800">Skincare</span>
+                            </div>
+                            <h3 class="text-xl font-serif font-bold text-brand-900 mb-2">Rejuvenating Facial Treatments</h3>
+                            <p class="text-brand-500 text-xs leading-relaxed mb-6">Pore deep-cleansing, exfoliation, hot towel therapy, and moisturizing facial treatment to refresh and hydrate your skin.</p>
+                        </div>
+                        <div class="pt-4 border-t border-brand-200 flex items-center justify-between">
+                            <span class="text-xs font-semibold text-brand-500">Duration ~ 40 mins</span>
+                            <button onclick="selectServiceForEstimate('facial')" class="text-xs font-bold text-brand-900 hover:text-brand-gold transition-colors flex items-center gap-1">
+                                <span>Add to Estimator</span>
+                                <i class="fa-solid fa-plus text-[10px]"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Service 4 -->
+                    <div class="glass-card p-8 rounded-2xl flex flex-col justify-between reveal">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="p-3 rounded-xl bg-brand-900 text-brand-gold text-xl">
+                                    <i class="fa-solid fa-hand-holding-droplet"></i>
+                                </span>
+                                <span class="text-xs font-semibold px-3 py-1 rounded-full bg-brand-100 text-brand-800">Hair Care</span>
+                            </div>
+                            <h3 class="text-xl font-serif font-bold text-brand-900 mb-2">Scalp & Intensive Hair Treatments</h3>
+                            <p class="text-brand-500 text-xs leading-relaxed mb-6">Targeted scalp detox, moisture restoration, and scalp massages to promote healthier hair growth and eliminate dryness.</p>
+                        </div>
+                        <div class="pt-4 border-t border-brand-200 flex items-center justify-between">
+                            <span class="text-xs font-semibold text-brand-500">Duration ~ 35 mins</span>
+                            <button onclick="selectServiceForEstimate('scalp')" class="text-xs font-bold text-brand-900 hover:text-brand-gold transition-colors flex items-center gap-1">
+                                <span>Add to Estimator</span>
+                                <i class="fa-solid fa-plus text-[10px]"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Service 5 -->
+                    <div class="glass-card p-8 rounded-2xl flex flex-col justify-between reveal">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="p-3 rounded-xl bg-brand-900 text-brand-gold text-xl">
+                                    <i class="fa-solid fa-wand-magic-sparkles"></i>
+                                </span>
+                                <span class="text-xs font-semibold px-3 py-1 rounded-full bg-brand-100 text-brand-800">Texture</span>
+                            </div>
+                            <h3 class="text-xl font-serif font-bold text-brand-900 mb-2">Perms & Chemical Texture</h3>
+                            <p class="text-brand-500 text-xs leading-relaxed mb-6">Modern perm styling to introduce volume, natural curls, or waves with safe professional chemical treatments.</p>
+                        </div>
+                        <div class="pt-4 border-t border-brand-200 flex items-center justify-between">
+                            <span class="text-xs font-semibold text-brand-500">Duration ~ 90 mins</span>
+                            <button onclick="selectServiceForEstimate('perm')" class="text-xs font-bold text-brand-900 hover:text-brand-gold transition-colors flex items-center gap-1">
+                                <span>Add to Estimator</span>
+                                <i class="fa-solid fa-plus text-[10px]"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Service 6 -->
+                    <div class="glass-card p-8 rounded-2xl flex flex-col justify-between reveal">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="p-3 rounded-xl bg-brand-900 text-brand-gold text-xl">
+                                    <i class="fa-solid fa-scissors"></i>
+                                </span>
+                                <span class="text-xs font-semibold px-3 py-1 rounded-full bg-brand-100 text-brand-800">Grooming</span>
+                            </div>
+                            <h3 class="text-xl font-serif font-bold text-brand-900 mb-2">Beard Sculpting & Razor Lineup</h3>
+                            <p class="text-brand-500 text-xs leading-relaxed mb-6">Crisp straight razor edging, beard trimming, shaping, and warm towel finish for clean facial hair definition.</p>
+                        </div>
+                        <div class="pt-4 border-t border-brand-200 flex items-center justify-between">
+                            <span class="text-xs font-semibold text-brand-500">Duration ~ 25 mins</span>
+                            <button onclick="selectServiceForEstimate('beard')" class="text-xs font-bold text-brand-900 hover:text-brand-gold transition-colors flex items-center gap-1">
+                                <span>Add to Estimator</span>
+                                <i class="fa-solid fa-plus text-[10px]"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+
+        <!-- Filterable Interactive Portfolio Showcase -->
+        <section id="portfolio" class="py-20 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+               
+                <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 reveal">
+                    <div>
+                        <span class="text-xs uppercase tracking-widest font-bold text-brand-gold">Craft Gallery</span>
+                        <h2 class="text-3xl sm:text-4xl font-serif font-bold text-brand-900 mt-1">Interactive Style Showcase</h2>
+                    </div>
+                   
+                    <!-- Filter Buttons -->
+                    <div class="flex flex-wrap gap-2 mt-6 md:mt-0">
+                        <button onclick="filterPortfolio('all')" class="portfolio-btn px-4 py-2 rounded-full text-xs font-semibold tracking-wider transition-all bg-brand-900 text-white" data-filter="all">All Styles</button>
+                        <button onclick="filterPortfolio('fades')" class="portfolio-btn px-4 py-2 rounded-full text-xs font-semibold tracking-wider transition-all bg-brand-100 text-brand-800 hover:bg-brand-200" data-filter="fades">Fades & Cuts</button>
+                        <button onclick="filterPortfolio('treatments')" class="portfolio-btn px-4 py-2 rounded-full text-xs font-semibold tracking-wider transition-all bg-brand-100 text-brand-800 hover:bg-brand-200" data-filter="treatments">Facials & Scalp</button>
+                        <button onclick="filterPortfolio('styling')" class="portfolio-btn px-4 py-2 rounded-full text-xs font-semibold tracking-wider transition-all bg-brand-100 text-brand-800 hover:bg-brand-200" data-filter="styling">Blowouts & Perms</button>
+                    </div>
+                </div>
+
+                <!-- Gallery Grid -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="portfolio-grid">
+                   
+                    <!-- Item 1 -->
+                    <div class="portfolio-item fades group relative rounded-2xl overflow-hidden aspect-[4/5] bg-brand-100 shadow-sm reveal">
+                        <img src="https://images.unsplash.com/photo-1621605815971-fbc98d665033?auto=format&fit=crop&q=80&w=600"
+                             alt="Low Drop Skin Fade"
+                             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                             onerror="this.src='https://placehold.co/600x750/111318/FFFFFF?text=Precision+Fade'">
+                        <div class="absolute inset-0 bg-gradient-to-t from-brand-900/90 via-brand-900/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-6 flex flex-col justify-end text-white">
+                            <span class="text-[10px] font-bold uppercase tracking-widest text-brand-gold">Old Skool Fade</span>
+                            <h4 class="font-serif text-xl font-bold">Mid Skin Fade & Textured Top</h4>
+                            <p class="text-xs text-brand-200 mt-1">Sharp hairline gradient with balanced natural texture.</p>
+                        </div>
+                    </div>
+
+                    <!-- Item 2 -->
+                    <div class="portfolio-item treatments group relative rounded-2xl overflow-hidden aspect-[4/5] bg-brand-100 shadow-sm reveal">
+                        <img src="https://images.unsplash.com/photo-1512290900676-26c2a6a095ae?auto=format&fit=crop&q=80&w=600"
+                             alt="Facial Skincare Treatment"
+                             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                             onerror="this.src='https://placehold.co/600x750/232630/FFFFFF?text=Facial+Treatment'">
+                        <div class="absolute inset-0 bg-gradient-to-t from-brand-900/90 via-brand-900/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-6 flex flex-col justify-end text-white">
+                            <span class="text-[10px] font-bold uppercase tracking-widest text-brand-gold">Cosmetology</span>
+                            <h4 class="font-serif text-xl font-bold">Deep Pore Facial & Spa Hot Towel</h4>
+                            <p class="text-xs text-brand-200 mt-1">Cleansing therapy for revitalized, refreshed skin texture.</p>
+                        </div>
+                    </div>
+
+                    <!-- Item 3 -->
+                    <div class="portfolio-item styling group relative rounded-2xl overflow-hidden aspect-[4/5] bg-brand-100 shadow-sm reveal">
+                        <img src="https://images.unsplash.com/photo-1562322140-8baeececf3df?auto=format&fit=crop&q=80&w=600"
+                             alt="Volume Blowout Styling"
+                             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                             onerror="this.src='https://placehold.co/600x750/111318/FFFFFF?text=Blowout+Styling'">
+                        <div class="absolute inset-0 bg-gradient-to-t from-brand-900/90 via-brand-900/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-6 flex flex-col justify-end text-white">
+                            <span class="text-[10px] font-bold uppercase tracking-widest text-brand-gold">Styling</span>
+                            <h4 class="font-serif text-xl font-bold">Volumizing Blowout & Finish</h4>
+                            <p class="text-xs text-brand-200 mt-1">Heat sculpted structure with high-shine weightless hold.</p>
+                        </div>
+                    </div>
+
+                    <!-- Item 4 -->
+                    <div class="portfolio-item fades group relative rounded-2xl overflow-hidden aspect-[4/5] bg-brand-100 shadow-sm reveal">
+                        <img src="https://images.unsplash.com/photo-1599351431202-1e0f0137899a?auto=format&fit=crop&q=80&w=600"
+                             alt="Classic Taper & Beard Sculpting"
+                             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                             onerror="this.src='https://placehold.co/600x750/111318/FFFFFF?text=Classic+Beard+Taper'">
+                        <div class="absolute inset-0 bg-gradient-to-t from-brand-900/90 via-brand-900/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-6 flex flex-col justify-end text-white">
+                            <span class="text-[10px] font-bold uppercase tracking-widest text-brand-gold">Barbering</span>
+                            <h4 class="font-serif text-xl font-bold">Classic Taper + Beard Lineup</h4>
+                            <p class="text-xs text-brand-200 mt-1">Symmetrical razor precision and contoured facial hair sculpting.</p>
+                        </div>
+                    </div>
+
+                    <!-- Item 5 -->
+                    <div class="portfolio-item treatments group relative rounded-2xl overflow-hidden aspect-[4/5] bg-brand-100 shadow-sm reveal">
+                        <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&q=80&w=600"
+                             alt="Scalp Detox Treatment"
+                             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                             onerror="this.src='https://placehold.co/600x750/111318/FFFFFF?text=Scalp+Detox'">
+                        <div class="absolute inset-0 bg-gradient-to-t from-brand-900/90 via-brand-900/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-6 flex flex-col justify-end text-white">
+                            <span class="text-[10px] font-bold uppercase tracking-widest text-brand-gold">Hair Therapy</span>
+                            <h4 class="font-serif text-xl font-bold">Restorative Scalp & Moisture Mask</h4>
+                            <p class="text-xs text-brand-200 mt-1">Deep nourish treatment reviving hair follicles and scalp moisture balance.</p>
+                        </div>
+                    </div>
+
+                    <!-- Item 6 -->
+                    <div class="portfolio-item styling group relative rounded-2xl overflow-hidden aspect-[4/5] bg-brand-100 shadow-sm reveal">
+                        <img src="https://images.unsplash.com/photo-1605497788044-5a32c7078486?auto=format&fit=crop&q=80&w=600"
+                             alt="Modern Perm Texture"
+                             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                             onerror="this.src='https://placehold.co/600x750/111318/FFFFFF?text=Modern+Perm'">
+                        <div class="absolute inset-0 bg-gradient-to-t from-brand-900/90 via-brand-900/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-6 flex flex-col justify-end text-white">
+                            <span class="text-[10px] font-bold uppercase tracking-widest text-brand-gold">Texture</span>
+                            <h4 class="font-serif text-xl font-bold">Modern Wave Perm & Style</h4>
+                            <p class="text-xs text-brand-200 mt-1">Custom curl pattern restructuring for enhanced volume and movement.</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+
+        <!-- Interactive Service Estimator Section -->
+        <section id="estimator" class="py-20 bg-brand-900 text-white relative overflow-hidden">
+            <!-- Decorative Subtle Shapes -->
+            <div class="absolute top-0 right-0 w-96 h-96 bg-brand-gold/10 rounded-full blur-3xl pointer-events-none"></div>
+
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                   
+                    <div class="lg:col-span-5 space-y-4 reveal">
+                        <span class="text-xs uppercase tracking-widest font-bold text-brand-gold">Custom Consultation Tool</span>
+                        <h2 class="text-3xl sm:text-4xl font-serif font-bold leading-tight">Interactive Service & Time Estimator</h2>
+                        <p class="text-brand-300 text-sm leading-relaxed font-light">
+                            Select the combination of hair styling, skin therapy, or classic barbering services you need. Get an instant duration estimate and send your customized package directly via Instagram DM.
+                        </p>
+
+                        <div class="p-6 rounded-2xl bg-white/5 border border-white/10 space-y-4">
+                            <div class="flex items-center gap-3">
+                                <i class="fa-solid fa-clock text-brand-gold text-lg"></i>
+                                <div>
+                                    <h4 class="text-xs uppercase font-bold tracking-wider text-brand-200">Estimated Total Duration</h4>
+                                    <p class="text-2xl font-serif font-bold text-white" id="total-duration-display">0 Minutes</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-3 border-t border-white/10 pt-4">
+                                <i class="fa-solid fa-scissors text-brand-gold text-lg"></i>
+                                <div>
+                                    <h4 class="text-xs uppercase font-bold tracking-wider text-brand-200">Selected Package Services</h4>
+                                    <p class="text-xs text-brand-300" id="selected-services-summary">No services selected yet.</p>
+                                </div>
+                            </div>
+                            <button id="book-package-btn" onclick="bookCustomPackage()" disabled class="w-full py-3.5 rounded-xl bg-brand-gold text-brand-900 font-bold text-xs uppercase tracking-wider disabled:opacity-40 disabled:cursor-not-allowed hover:bg-brand-goldlight transition-all flex items-center justify-center gap-2">
+                                <i class="fa-brands fa-instagram text-base"></i>
+                                <span>Book Selected Package on Instagram</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="lg:col-span-7 reveal">
+                        <div class="bg-white/10 backdrop-blur-md p-6 sm:p-8 rounded-3xl border border-white/15">
+                            <h3 class="font-serif text-xl font-semibold text-white mb-6">Choose Your Desired Services</h3>
+
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4" id="estimator-options">
+                               
+                                <label class="estimator-item cursor-pointer flex items-start gap-4 p-4 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 transition-all">
+                                    <input type="checkbox" data-service="Old Fashion Fade & Style" data-time="45" onchange="updateEstimate()" class="mt-1 w-4 h-4 rounded text-brand-gold focus:ring-0 accent-brand-gold">
+                                    <div>
+                                        <span class="block text-sm font-semibold text-white">Old Fashion Fade</span>
+                                        <span class="block text-xs text-brand-300 mt-0.5">Precision fade, cut & style (~45m)</span>
+                                    </div>
+                                </label>
+
+                                <label class="estimator-item cursor-pointer flex items-start gap-4 p-4 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 transition-all">
+                                    <input type="checkbox" data-service="Deep Cleansing Facial" data-time="40" onchange="updateEstimate()" class="mt-1 w-4 h-4 rounded text-brand-gold focus:ring-0 accent-brand-gold">
+                                    <div>
+                                        <span class="block text-sm font-semibold text-white">Rejuvenating Facial</span>
+                                        <span class="block text-xs text-brand-300 mt-0.5">Hot towel, skin therapy (~40m)</span>
+                                    </div>
+                                </label>
+
+                                <label class="estimator-item cursor-pointer flex items-start gap-4 p-4 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 transition-all">
+                                    <input type="checkbox" data-service="Scalp Detox Treatment" data-time="35" onchange="updateEstimate()" class="mt-1 w-4 h-4 rounded text-brand-gold focus:ring-0 accent-brand-gold">
+                                    <div>
+                                        <span class="block text-sm font-semibold text-white">Scalp & Hair Treatment</span>
+                                        <span class="block text-xs text-brand-300 mt-0.5">Scalp massage & moisture (~35m)</span>
+                                    </div>
+                                </label>
+
+                                <label class="estimator-item cursor-pointer flex items-start gap-4 p-4 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 transition-all">
+                                    <input type="checkbox" data-service="Signature Blowout" data-time="30" onchange="updateEstimate()" class="mt-1 w-4 h-4 rounded text-brand-gold focus:ring-0 accent-brand-gold">
+                                    <div>
+                                        <span class="block text-sm font-semibold text-white">Signature Blowout</span>
+                                        <span class="block text-xs text-brand-300 mt-0.5">Volume blow dry styling (~30m)</span>
+                                    </div>
+                                </label>
+
+                                <label class="estimator-item cursor-pointer flex items-start gap-4 p-4 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 transition-all">
+                                    <input type="checkbox" data-service="Beard Sculpt & Razor Edge" data-time="25" onchange="updateEstimate()" class="mt-1 w-4 h-4 rounded text-brand-gold focus:ring-0 accent-brand-gold">
+                                    <div>
+                                        <span class="block text-sm font-semibold text-white">Beard Sculpt & Razor</span>
+                                        <span class="block text-xs text-brand-300 mt-0.5">Crisp edging & beard care (~25m)</span>
+                                    </div>
+                                </label>
+
+                                <label class="estimator-item cursor-pointer flex items-start gap-4 p-4 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 transition-all">
+                                    <input type="checkbox" data-service="Texture Perm Service" data-time="90" onchange="updateEstimate()" class="mt-1 w-4 h-4 rounded text-brand-gold focus:ring-0 accent-brand-gold">
+                                    <div>
+                                        <span class="block text-sm font-semibold text-white">Perm & Curl Texture</span>
+                                        <span class="block text-xs text-brand-300 mt-0.5">Full texture transformation (~90m)</span>
+                                    </div>
+                                </label>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+
+        <!-- Client Testimonials & Experience -->
+        <section id="testimonials" class="py-20 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+               
+                <div class="text-center max-w-3xl mx-auto mb-16 reveal">
+                    <span class="text-xs uppercase tracking-widest font-bold text-brand-gold">Client Experience</span>
+                    <h2 class="text-3xl sm:text-4xl font-serif font-bold text-brand-900 mt-1">What Clients Say</h2>
+                    <p class="text-brand-500 text-sm mt-2">Consistent 5-star precision, cleanliness, and customized cosmetology care.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                   
+                    <!-- Review 1 -->
+                    <div class="glass-card p-8 rounded-2xl flex flex-col justify-between reveal">
+                        <div class="space-y-4">
+                            <div class="flex items-center gap-1 text-amber-400 text-sm">
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                            </div>
+                            <p class="text-brand-800 text-sm leading-relaxed font-light italic">
+                                "Brayan's fade work is next level. He pays attention to every single detail and knows how to blend clean old-school razor precision with modern styling. Won't sit in anyone else's chair."
+                            </p>
+                        </div>
+                        <div class="pt-6 border-t border-brand-100 flex items-center gap-3 mt-6">
+                            <div class="w-10 h-10 rounded-full bg-brand-200 font-serif font-bold text-brand-900 flex items-center justify-center text-sm">
+                                AR
+                            </div>
+                            <div>
+                                <h4 class="text-sm font-semibold text-brand-900">Adrian R.</h4>
+                                <p class="text-[11px] text-brand-500">Regular Client — Fade & Beard</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Review 2 -->
+                    <div class="glass-card p-8 rounded-2xl flex flex-col justify-between reveal">
+                        <div class="space-y-4">
+                            <div class="flex items-center gap-1 text-amber-400 text-sm">
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                            </div>
+                            <p class="text-brand-800 text-sm leading-relaxed font-light italic">
+                                "Combining hair styling with facial treatments is the best concept. The facial and hot towel treatment after a fresh cut leaves you feeling totally rejuvenated."
+                            </p>
+                        </div>
+                        <div class="pt-6 border-t border-brand-100 flex items-center gap-3 mt-6">
+                            <div class="w-10 h-10 rounded-full bg-brand-200 font-serif font-bold text-brand-900 flex items-center justify-center text-sm">
+                                DL
+                            </div>
+                            <div>
+                                <h4 class="text-sm font-semibold text-brand-900">David L.</h4>
+                                <p class="text-[11px] text-brand-500">Facial & Hair Care Client</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Review 3 -->
+                    <div class="glass-card p-8 rounded-2xl flex flex-col justify-between reveal">
+                        <div class="space-y-4">
+                            <div class="flex items-center gap-1 text-amber-400 text-sm">
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                            </div>
+                            <p class="text-brand-800 text-sm leading-relaxed font-light italic">
+                                "Got a blowout and perm treatment done by Brayan. He explained the entire maintenance routine to keep my curls healthy. Super professional cosmetology craftsmanship!"
+                            </p>
+                        </div>
+                        <div class="pt-6 border-t border-brand-100 flex items-center gap-3 mt-6">
+                            <div class="w-10 h-10 rounded-full bg-brand-200 font-serif font-bold text-brand-900 flex items-center justify-center text-sm">
+                                MC
+                            </div>
+                            <div>
+                                <h4 class="text-sm font-semibold text-brand-900">Marcus C.</h4>
+                                <p class="text-[11px] text-brand-500">Perm & Texture Client</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+
+        <!-- Direct Instagram & Booking CTA Banner -->
+        <section class="py-16 bg-brand-50 border-t border-brand-200/80">
+            <div class="max-w-5xl mx-auto px-4 text-center space-y-6 reveal">
+                <span class="w-16 h-16 rounded-full bg-brand-900 text-brand-gold inline-flex items-center justify-center text-2xl shadow-md">
+                    <i class="fa-brands fa-instagram"></i>
+                </span>
+               
+                <h2 class="text-3xl sm:text-4xl font-serif font-bold text-brand-900">Ready For Your Next Cut or Treatment?</h2>
+                <p class="text-brand-500 text-sm sm:text-base max-w-xl mx-auto font-light">
+                    Direct message on Instagram for appointments, availability, custom pricing, or special consultation requests.
+                </p>
+
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-4 pt-2">
+                    <a href="https://instagram.com/prestige_old_skool" target="_blank" rel="noopener" class="w-full sm:w-auto px-8 py-4 rounded-full bg-brand-900 text-white font-semibold text-xs uppercase tracking-wider hover:bg-brand-gold hover:text-brand-900 transition-all shadow-md">
+                        Visit @prestige_old_skool on Instagram
+                    </a>
+                    <button onclick="openBookingModal()" class="w-full sm:w-auto px-8 py-4 rounded-full bg-white border border-brand-300 text-brand-900 font-semibold text-xs uppercase tracking-wider hover:bg-brand-100 transition-all">
+                        Quick Contact Form
+                    </button>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-brand-900 text-white py-12 border-t border-brand-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+               
+                <div class="flex items-center gap-3">
+                    <div class="w-9 h-9 rounded-full bg-brand-gold text-brand-900 flex items-center justify-center font-serif font-bold">
+                        BM
+                    </div>
+                    <div>
+                        <p class="font-serif font-bold text-base leading-none">Brayan Meza</p>
+                        <p class="text-xs text-brand-400 mt-1">Barber & Cosmetology Specialist • Prestige Old Skool</p>
+                    </div>
+                </div>
+
+                <div class="text-xs text-brand-400 text-center md:text-right">
+                    <p>&copy; <span id="year"></span> Brayan Meza. All rights reserved.</p>
+                    <p class="mt-1 text-[11px] text-brand-500">Crafting personalized fades, scalp therapies, facials & modern hairstyles.</p>
+                </div>
+
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- Interactive Booking & Inquiry Modal -->
+    <div id="booking-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-brand-900/70 backdrop-blur-sm">
+        <div class="glass-panel bg-white w-full max-w-md rounded-3xl p-6 sm:p-8 shadow-2xl relative border border-brand-200 space-y-6">
+           
+            <button onclick="closeBookingModal()" class="absolute top-5 right-5 text-brand-400 hover:text-brand-900 transition-colors p-1" aria-label="Close Modal">
+                <i class="fa-solid fa-xmark text-xl"></i>
+            </button>
+
+            <div>
+                <span class="text-xs uppercase tracking-widest font-bold text-brand-gold">Appointment Inquiry</span>
+                <h3 class="text-2xl font-serif font-bold text-brand-900 mt-1">Book With Brayan</h3>
+                <p class="text-xs text-brand-500 mt-1">Send a direct inquiry or launch Instagram DM.</p>
+            </div>
+
+            <form id="modal-form" onsubmit="handleFormSubmit(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-semibold uppercase text-brand-800 mb-1">Your Full Name</label>
+                    <input type="text" required placeholder="John Doe" class="w-full px-4 py-3 rounded-xl border border-brand-200 text-sm focus:outline-none focus:border-brand-gold focus:ring-1 focus:ring-brand-gold">
+                </div>
+
+                <div>
+                    <label class="block text-xs font-semibold uppercase text-brand-800 mb-1">Requested Service(s)</label>
+                    <select class="w-full px-4 py-3 rounded-xl border border-brand-200 text-sm focus:outline-none focus:border-brand-gold focus:ring-1 focus:ring-brand-gold">
+                        <option value="Old Fashion Fade & Style">Old Fashion Fade & Hair Style</option>
+                        <option value="Rejuvenating Facial Treatment">Rejuvenating Facial Treatment</option>
+                        <option value="Scalp Care & Hair Treatment">Scalp Care & Hair Treatment</option>
+                        <option value="Signature Blowout">Signature Blowout</option>
+                        <option value="Perm / Texture Service">Perm / Texture Chemical Service</option>
+                        <option value="Beard Sculpting">Beard Sculpting & Razor Edge</option>
+                        <option value="Full Grooming Package">Full Custom Package</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-semibold uppercase text-brand-800 mb-1">Preferred Date / Time</label>
+                    <input type="text" placeholder="e.g. Tomorrow afternoon around 3PM" class="w-full px-4 py-3 rounded-xl border border-brand-200 text-sm focus:outline-none focus:border-brand-gold focus:ring-1 focus:ring-brand-gold">
+                </div>
+
+                <div>
+                    <label class="block text-xs font-semibold uppercase text-brand-800 mb-1">Note or Specific Request</label>
+                    <textarea rows="3" placeholder="Tell me about your hairstyle goals or skin treatment requests..." class="w-full px-4 py-3 rounded-xl border border-brand-200 text-sm focus:outline-none focus:border-brand-gold focus:ring-1 focus:ring-brand-gold"></textarea>
+                </div>
+
+                <div class="pt-2 flex flex-col gap-3">
+                    <button type="submit" class="w-full py-3.5 rounded-xl bg-brand-900 text-white font-bold text-xs uppercase tracking-wider hover:bg-brand-gold hover:text-brand-900 transition-all shadow-md">
+                        Send Booking Inquiry
+                    </button>
+                   
+                    <a href="https://instagram.com/prestige_old_skool" target="_blank" rel="noopener" class="w-full py-3 rounded-xl bg-brand-100 text-brand-800 font-semibold text-xs uppercase tracking-wider hover:bg-brand-200 text-center transition-colors">
+                        Book Directly on Instagram DMs
+                    </a>
+                </div>
+            </form>
+
+            <div id="modal-success-msg" class="hidden text-center py-6 space-y-3">
+                <div class="w-12 h-12 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mx-auto text-xl">
+                    <i class="fa-solid fa-check"></i>
+                </div>
+                <h4 class="font-serif text-xl font-bold text-brand-900">Inquiry Request Received!</h4>
+                <p class="text-xs text-brand-500 max-w-xs mx-auto">Redirecting you to Instagram @prestige_old_skool to finalize your appointment details with Brayan.</p>
+            </div>
+
+        </div>
+    </div>
+
+
+    <!-- JavaScript Interactive Logic -->
+    <script>
+        // Set current year in footer
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Mobile Menu Toggle
+        const mobileBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+       
+        mobileBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu on link click
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Modal Open / Close Logic
+        function openBookingModal() {
+            document.getElementById('booking-modal').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeBookingModal() {
+            document.getElementById('booking-modal').classList.add('hidden');
+            document.body.style.overflow = 'auto';
+            document.getElementById('modal-form').classList.remove('hidden');
+            document.getElementById('modal-success-msg').classList.add('hidden');
+        }
+
+        // Form Submission Simulation
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            document.getElementById('modal-form').classList.add('hidden');
+            document.getElementById('modal-success-msg').classList.remove('hidden');
+
+            // Redirect to Instagram after 2 seconds
+            setTimeout(() => {
+                window.open('https://instagram.com/prestige_old_skool', '_blank');
+                closeBookingModal();
+            }, 2200);
+        }
+
+        // Portfolio Filtering
+        function filterPortfolio(category) {
+            // Update active state on buttons
+            document.querySelectorAll('.portfolio-btn').forEach(btn => {
+                if (btn.getAttribute('data-filter') === category) {
+                    btn.classList.remove('bg-brand-100', 'text-brand-800');
+                    btn.classList.add('bg-brand-900', 'text-white');
+                } else {
+                    btn.classList.remove('bg-brand-900', 'text-white');
+                    btn.classList.add('bg-brand-100', 'text-brand-800');
+                }
+            });
+
+            // Filter Grid Items
+            const items = document.querySelectorAll('.portfolio-item');
+            items.forEach(item => {
+                if (category === 'all' || item.classList.contains(category)) {
+                    item.style.display = 'block';
+                    setTimeout(() => { item.style.opacity = '1'; item.style.transform = 'scale(1)'; }, 50);
+                } else {
+                    item.style.opacity = '0';
+                    item.style.transform = 'scale(0.95)';
+                    setTimeout(() => { item.style.display = 'none'; }, 300);
+                }
+            });
+        }
+
+        // Interactive Service Estimator Logic
+        let selectedServices = [];
+        let totalTime = 0;
+
+        function updateEstimate() {
+            const checkboxes = document.querySelectorAll('#estimator-options input[type="checkbox"]');
+            selectedServices = [];
+            totalTime = 0;
+
+            checkboxes.forEach(cb => {
+                if (cb.checked) {
+                    selectedServices.push(cb.getAttribute('data-service'));
+                    totalTime += parseInt(cb.getAttribute('data-time'));
+                }
+            });
+
+            // Update UI
+            const durationDisplay = document.getElementById('total-duration-display');
+            const summaryDisplay = document.getElementById('selected-services-summary');
+            const bookBtn = document.getElementById('book-package-btn');
+
+            if (selectedServices.length === 0) {
+                durationDisplay.textContent = '0 Minutes';
+                summaryDisplay.textContent = 'No services selected yet.';
+                bookBtn.disabled = true;
+            } else {
+                durationDisplay.textContent = `${totalTime} Minutes (~${(totalTime/60).toFixed(1)} hrs)`;
+                summaryDisplay.textContent = selectedServices.join(', ');
+                bookBtn.disabled = false;
+            }
+        }
+
+        // Add service directly from service card buttons
+        function selectServiceForEstimate(type) {
+            const estimatorSection = document.getElementById('estimator');
+            estimatorSection.scrollIntoView({ behavior: 'smooth' });
+
+            const checkboxes = document.querySelectorAll('#estimator-options input[type="checkbox"]');
+           
+            checkboxes.forEach(cb => {
+                const serviceName = cb.getAttribute('data-service').toLowerCase();
+                if (
+                    (type === 'fade' && serviceName.includes('fade')) ||
+                    (type === 'blowout' && serviceName.includes('blowout')) ||
+                    (type === 'facial' && serviceName.includes('facial')) ||
+                    (type === 'scalp' && serviceName.includes('scalp')) ||
+                    (type === 'perm' && serviceName.includes('perm')) ||
+                    (type === 'beard' && serviceName.includes('beard'))
+                ) {
+                    cb.checked = true;
+                }
+            });
+            updateEstimate();
+        }
+
+        // Launch Instagram with pre-filled package message intent
+        function bookCustomPackage() {
+            const msg = `Hi Brayan! I would like to book a custom package (${selectedServices.join(', ')}) estimated around ${totalTime} mins.`;
+            const encodedMsg = encodeURIComponent(msg);
+            window.open(`https://instagram.com/prestige_old_skool`, '_blank');
+        }
+
+        // Lightweight Scroll Reveal Observer
+        const observerOptions = {
+            threshold: 0.15,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, observerOptions);
+
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+        });
+    </script>
+</body>
+</html>
